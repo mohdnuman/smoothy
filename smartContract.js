@@ -9,13 +9,13 @@ const provider = new Web3.providers.HttpProvider(
 );
 web3 = new Web3(provider);
 
-async function getBalance(address) {
+async function getData(userAddress) {
   const contract = "0xe5859f4EFc09027A9B718781DCb2C6910CAc6E91";
 
   const Instance = new web3.eth.Contract(Abi, contract);
 
   const numberOfTokens = await Instance.methods._ntokens().call();
-  const LPtokensRecieved = await Instance.methods.balanceOf(address).call();
+  const LPtokensRecieved = await Instance.methods.balanceOf(userAddress).call();
   const LptotalSupply = await Instance.methods.totalSupply().call();
 
   for (let i = 0; i < 8; i++) {
@@ -57,5 +57,5 @@ async function getBalance(address) {
   }
 }
 
-let address = "0xf38c50b316ad1d5b177f4f085994383b8e92730e";
-getBalance(address);
+let userAddress = "0x802c47a70c6cc2e008617688a7062709eb48564a";
+getData(userAddress);
